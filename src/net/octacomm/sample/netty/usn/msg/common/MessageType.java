@@ -3,15 +3,15 @@ package net.octacomm.sample.netty.usn.msg.common;
 import lombok.Getter;
 import net.octacomm.sample.netty.common.msg.IMessageType;
 import net.octacomm.sample.netty.exception.NotSupprtedMessageIdException;
-import net.octacomm.sample.netty.usn.msg.DummyIncomming;
+import net.octacomm.sample.netty.usn.msg.DummyIncoming;
 import net.octacomm.sample.netty.usn.msg.DummyOutgoingAck;
 
 @Getter
 public enum MessageType implements IMessageType {
 	DUMMY_OUTGOING(0x01, 1),
 	DUMMY_OUTGOING_ACK(0x81, DummyOutgoingAck.class),
-	DUMMY_INCOMMING(0x02, DummyIncomming.class),
-	DUMMY_INCOMMING_ACK(0x82, 0)
+	DUMMY_INCOMING(0x02, DummyIncoming.class),
+	DUMMY_INCOMING_ACK(0x82, 0)
 	;
 	
 	@Getter private Class<? extends UsnIncomingMessage> incomingClass;

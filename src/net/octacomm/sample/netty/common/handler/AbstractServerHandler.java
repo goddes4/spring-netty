@@ -74,7 +74,7 @@ public abstract class AbstractServerHandler<I extends IncomingMessage<?>, O exte
 	protected void channelRead0(ChannelHandlerContext ctx, I packet)
 			throws Exception {
 		
-		logger.info("[Incomming] {} {}", getChannelName(), packet);
+		logger.info("[Incoming] {} {}", getChannelName(), packet);
 
 		if (isAckMessage(packet)) {
 			recvLock.offer(packet);

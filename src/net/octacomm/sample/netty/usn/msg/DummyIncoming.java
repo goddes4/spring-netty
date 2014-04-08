@@ -11,11 +11,11 @@ import net.octacomm.sample.netty.usn.msg.common.UsnMessageHeader;
 @Setter
 @Getter
 @ToString(callSuper = true)
-public class DummyIncomming extends AbstractUsnMessage implements UsnIncomingMessage {
+public class DummyIncoming extends AbstractUsnMessage implements UsnIncomingMessage {
 
 	private int dummyData;
 	
-	public DummyIncomming(UsnMessageHeader header) {
+	public DummyIncoming(UsnMessageHeader header) {
 		super(header);
 	}
 

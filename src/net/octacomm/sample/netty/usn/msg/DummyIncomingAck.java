@@ -15,10 +15,10 @@ import net.octacomm.sample.netty.usn.msg.common.UsnOutgoingMessage;
  */
 @Getter
 @ToString(callSuper = true)
-public class DummyIncommingAck extends AbstractUsnMessage implements UsnOutgoingMessage {
+public class DummyIncomingAck extends AbstractUsnMessage implements UsnOutgoingMessage {
 
-	public DummyIncommingAck() {
-		super(new UsnMessageHeader(MessageType.DUMMY_INCOMMING_ACK));		
+	public DummyIncomingAck() {
+		super(new UsnMessageHeader(MessageType.DUMMY_INCOMING_ACK));		
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package net.octacomm.sample.netty.usn.msg.common;
 
-import net.octacomm.sample.netty.usn.msg.DummyIncommingAck;
+import net.octacomm.sample.netty.usn.msg.DummyIncomingAck;
 import net.octacomm.sample.netty.usn.msg.DummyOutgoing;
 
 /**
@@ -15,7 +15,7 @@ public class UsnMessageHelper {
 		return new DummyOutgoing(dummyData);
 	}
 
-	public static UsnOutgoingMessage makeDummyIncommingAck() {
-		return new DummyIncommingAck();
+	public static UsnOutgoingMessage makeDummyIncomingAck() {
+		return new DummyIncomingAck();
 	}
 }

@@ -18,7 +18,7 @@ public class UsnServerHandler extends AbstractServerHandler<UsnIncomingMessage, 
 	}
 
 	/**
-	 * IncommingPacket 이면서 suffix가 Ack 인 클래스의 경우
+	 * IncomingPacket 이면서 suffix가 Ack 인 클래스의 경우
 	 * sendSyncMessage() 에서 보낸 메시지의 Ack로 인식할 수 있도록 함
 	 * 
 	 * 예) EnemyHitResult -> EnemyHitResultAck

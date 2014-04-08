@@ -29,7 +29,7 @@ public class UsnServerDecoderTest {
 		ch.writeInbound(Unpooled.wrappedBuffer(new byte[] {0x02, (byte) 0xFF, 0x01, 23}));
 		
 		UsnIncomingMessage msg = (UsnIncomingMessage)ch.readInbound();
-		assertEquals(msg.getMessageType(), DUMMY_INCOMMING);
+		assertEquals(msg.getMessageType(), DUMMY_INCOMING);
 	}
 	
 	@Test
@@ -57,7 +57,7 @@ public class UsnServerDecoderTest {
 	public void testDummyIncomingAck() {
 		ByteBuf expectResult = Unpooled.wrappedBuffer(new byte[] {(byte) 0x82, 0x00, 0x00});
 		
-		ch.writeOutbound(UsnMessageHelper.makeDummyIncommingAck());
+		ch.writeOutbound(UsnMessageHelper.makeDummyIncomingAck());
 		
 		ByteBuf outBuff = (ByteBuf) ch.readOutbound();
 		

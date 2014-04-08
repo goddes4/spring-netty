@@ -4,11 +4,11 @@ import lombok.Getter;
 
 
 /**
- * AbstractMessage 를 상속하는 클래스는 IncommingMessage와 OutgoingMessage로 분리 된다.
+ * AbstractMessage 를 상속하는 클래스는 IncomingMessage와 OutgoingMessage로 분리 된다.
  * 
- * IncommingMessage은 Netty Decoder를 통해서 파싱 되기 때문에
+ * IncomingMessage은 Netty Decoder를 통해서 파싱 되기 때문에
  * MessagePacket보다 MessageHeader가 먼저 생성된다.
- * 그래서 IncommingMessage는 MessageHeader를 생성자 파라메터로 입력해야 한다.
+ * 그래서 IncomingMessage는 MessageHeader를 생성자 파라메터로 입력해야 한다.
  * 
  * OutgoingMessage는 서버에서 외부로 송신되는 메시지로
  * 생성자에서 MessageHeader를 만든다.

@@ -45,8 +45,8 @@ public class UsnMessageProcessor implements MessageListener<UsnIncomingMessage> 
 	public void messageReceived(UsnIncomingMessage packet) {
 		switch (packet.getMessageType()) {
 
-			case DUMMY_INCOMMING:
-				usnMessageSender.sendAsyncMessage(UsnMessageHelper.makeDummyIncommingAck(), false);
+			case DUMMY_INCOMING:
+				usnMessageSender.sendAsyncMessage(UsnMessageHelper.makeDummyIncomingAck(), false);
 					break;
 			
 			default:
