@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false" scan="false" scanPeriod="30 seconds">
+    <!-- Context name can be printed using '%contextName' -->
+    <contextName>LOG</contextName>
+
+	<property name="LOG_FILE_HOME" value="logs" />
+	
+	<property name="DEFAULT_PATTERN"
+		value="%d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %logger{30} %method:%L %n\t\t  %msg%n" />
+		
+	<!-- [%-10.-10t] main => [main      ]
+	     30.30  => (min, max)
+	    -30.    => left align
+	       .-30 => 30 보다 클 경우 뒤에서 자른다. -->
+	<property name="SIMPLE_PATTERN"
+		value="%d{HH:mm:ss.SSS} %-5level [%t] - %msg%n" />
+		
+	<property name="DEFAULT_PATTERN_FOR_FILE"
+		value="%d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %logger %method:%L %n\t\t  %msg%n" />
+    
+	<property name="DEFAULT_PATTERN_BAK"
+		value="[%date{yyyy-MM-dd HH:mm:ss}] [%level] [%thread] %logger{30} - %message%n" />
+    
+    <include file="resources/logback_default_appender.xml"/> 
+    <include file="resources/logback_default_logger.xml"/> 
+
+    <!-- 프로젝트에서 사용할 Appender 추가 할 경우 *************************** --> 
+    <appender name="USN_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE_HOME:-log}/usn.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily --> 
+            <fileNamePattern>${LOG_FILE_HOME:-log}/usn.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days' worth of history --> 
+            <maxHistory>30</maxHistory> 
+        </rollingPolicy>
+        <encoder>
+        	<charset>EUC-KR</charset>
+            <pattern>${DEFAULT_PATTERN_FOR_FILE}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="GUI_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE_HOME:-log}/gui.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily --> 
+            <fileNamePattern>${LOG_FILE_HOME:-log}/gui.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days' worth of history --> 
+            <maxHistory>30</maxHistory> 
+        </rollingPolicy>
+        <encoder>
+        	<charset>EUC-KR</charset>
+            <pattern>${DEFAULT_PATTERN_FOR_FILE}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 프로젝트에서 사용할 Logger 추가 할 경우 ***************************** --> 
+    
+    <logger name="net.octacomm.sample.netty.server.handler">
+        <level value="DEBUG"/>
+        <appender-ref ref="GUI_LOG"/>
+    </logger>
+    
+    <logger name="net.octacomm.sample.netty.usn">
+        <level value="DEBUG"/>
+        <appender-ref ref="USN_LOG"/>
+    </logger>
+    
+    <!-- 공통 로그 -->
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <!-- TRACE -> DEBUG -> INFO -> WARN -> ERROR -> FATAL -->
+    <!-- <root>보다 <logger> 에서 설정한 레벨이 먼저 적용된다. -->
+    <!-- additivity : 상위 logger를 상속 할지의 여부 (default : true) -->
+    <!-- SLF4J 설명
+       - slf4j-simple-1.6.4.jar : NOP를 위한 바인딩, 모든 로깅을 버림
+       - slf4j-log4j12-1.6.4.jar : 로깅 프레임워크로 폭넓게 사용중인 log4j version 1.2를 위한 바인딩
+       - slf4j-jcl-1.6.4.jar : Jakarta Commons Logging을 위한 바인딩, 이 바인딩은 모든 SFL4J를 JCL로 위임함 -->
+</configuration>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+    <logger name="org.quartz">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.directwebremoting">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.apache">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.jboss">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.mybatis">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.hibernate">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.apache.ibatis">
+        <level value="INFO"/>
+    </logger>
+    
+    <logger name="java.sql" additivity="true">
+        <level value="DEBUG"/>
+    </logger>
+</included>

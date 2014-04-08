@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+    <!-- 
+        class, method, file, and line are not fast. 
+        Thus, its use should be avoided unless execution speed is not an issue.  
+    -->
+
+    <!-- Console Logging in System.out -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 
+ 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		-->
+ 		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+ 			<evaluator>
+ 				<expression>
+ 					return formattedMessage.contains("NOTIFY_TIME_SYNC")
+ 						 || formattedMessage.contains("66 66 0B 05")
+ 						 || formattedMessage.contains("66 66 05 05")
+ 						 || formattedMessage.contains("CHECK_LINK_STATUS")
+ 						 || formattedMessage.contains("66 66 06 0A 00")
+ 						 || formattedMessage.contains("After decoding");
+ 				</expression>
+ 			</evaluator>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch> 			
+		</filter>
+ 		<encoder>
+            <pattern>${SIMPLE_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- Console Logging in System.err -->
+    <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <encoder>
+            <pattern>${DEFAULT_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Logging -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+    		<level>INFO</level>
+    	</filter>
+        <file>${LOG_FILE_HOME:-log}/default.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily --> 
+            <fileNamePattern>${LOG_FILE_HOME:-log}/default.%d{yyyy-MM-dd}.%i.log</fileNamePattern> <!-- 압축을 할경우 .zip 추가 -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
+                <!-- or whenever the file size reaches 10MB --> 
+                <maxFileSize>10MB</maxFileSize> 
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history --> 
+            <maxHistory>30</maxHistory> 
+        </rollingPolicy>
+        <encoder>
+        	<charset>EUC-KR</charset>
+            <pattern>${DEFAULT_PATTERN_FOR_FILE}</pattern>
+        </encoder>
+    </appender>
+</included>
