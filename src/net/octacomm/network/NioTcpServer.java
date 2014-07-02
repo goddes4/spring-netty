@@ -36,11 +36,10 @@ public class NioTcpServer extends ChannelInboundHandlerAdapter {
     private EventLoopGroup workerGroup = new NioEventLoopGroup();
 
     @Override
-	public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+	public void channelActive(ChannelHandlerContext ctx) throws Exception {
     	logger.info(ctx.channel() + " NioTcpServer is bound and started to accept incoming connections .");
-    	ctx.fireChannelRegistered();
 	}
-	
+
     public void setLocalIP(String serverIP) {
         this.localIP = serverIP;
     }
