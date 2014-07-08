@@ -1,10 +1,10 @@
 package net.octacomm.sample.netty.exception;
 
-import net.octacomm.sample.netty.usn.msg.common.MessageType;
+import net.octacomm.sample.netty.common.msg.IMessageType;
 
 public class InvalidDataSizeException extends RuntimeException {
 
-	public InvalidDataSizeException(MessageType msg, int size) {
+	public InvalidDataSizeException(IMessageType msg, int size) {
 		super("Size of " + msg + " is " + msg.getRequireBodySize());
 	}
 }
