@@ -77,7 +77,7 @@ public class DefaultChannelGroup implements ChannelGroup {
     @Override
     public void write(String ip, Object msg) {
         Channel channel = allChannels.get(ip);
-        if (allChannels.get(ip) != null) {
+        if (channel != null) {
             logger.debug("{} Send Message : {}", channel.remoteAddress(), msg);
             channel.writeAndFlush(msg).addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
         }
