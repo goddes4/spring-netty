@@ -77,7 +77,7 @@ public abstract class AbstractServerHandler<I extends IncomingMessage<?>, O exte
 		logger.info("[Incoming] {} {}", getChannelName(), packet);
 
 		if (isAckMessage(packet)) {
-			recvLock.offer(packet);
+			recvLock.offer(packet, 100, TimeUnit.MILLISECONDS);
 		} else {
 			listener.messageReceived(packet);
 		}
