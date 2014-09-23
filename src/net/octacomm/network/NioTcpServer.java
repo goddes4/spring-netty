@@ -2,6 +2,7 @@ package net.octacomm.network;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
@@ -72,6 +73,7 @@ public class NioTcpServer extends ChannelInboundHandlerAdapter {
         } else {
         	channelFuture = bootstrap.bind(new InetSocketAddress(localIP, localPort));
         }
+        channelFuture.addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
     }
     
     public void close() {
